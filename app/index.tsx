@@ -8,7 +8,7 @@ const WelcomeScreen = () => {
   React.useEffect(() => {
     const navigate = setInterval(() => {
       router.replace("/auth/login" as unknown as Href<string | object>);
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(navigate);
   }, []);
