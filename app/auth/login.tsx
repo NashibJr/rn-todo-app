@@ -4,6 +4,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Input from "@/components/Input";
 import { useFormik } from "formik";
 import { loginSchema } from "@/schema/validataion";
+import { useAppDispatch } from "@/state/hooks";
+import { login } from "@/state/slices/userSlice";
+import { nanoid } from "@reduxjs/toolkit";
+import { useRouter } from "expo-router";
 
 type UserProps = {
   username: string;
@@ -11,8 +15,23 @@ type UserProps = {
 };
 
 const LoginScreen = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
   const handleSubmit = (values: UserProps) => {
-    console.log(values, ">>>>");
+    try {
+      dispatch(
+        login({
+          id: `${~~(Math.random() * 10000000)}`,
+          username: values.username,
+          token: nanoid(),
+        })
+      );
+
+      router.replace("/home");
+    } catch (error) {
+      console.log(error, ">>>>>");
+    }
   };
 
   const formik = useFormik({
