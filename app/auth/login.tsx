@@ -4,7 +4,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Input from "@/components/Input";
 import { useFormik } from "formik";
 import { loginSchema } from "@/schema/validataion";
-import width from "@/constants/width";
 
 type UserProps = {
   username: string;
